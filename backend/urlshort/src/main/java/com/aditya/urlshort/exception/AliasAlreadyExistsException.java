@@ -3,11 +3,10 @@ package com.aditya.urlshort.exception;
 public class AliasAlreadyExistsException
         extends RuntimeException {
 
-    public AliasAlreadyExistsException(
-            String alias) {
+    public AliasAlreadyExistsException() {
 
         super(
-            "Alias already exists: " + alias
+            "Alias already exists"
         );
     }
 }

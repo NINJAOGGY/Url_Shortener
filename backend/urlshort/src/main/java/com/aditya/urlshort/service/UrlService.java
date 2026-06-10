@@ -46,9 +46,7 @@ public class UrlService {
             if (urlRepository.existsByShortCode(
                     request.customAlias())) {
 
-                throw new AliasAlreadyExistsException(
-                        request.customAlias()
-                );
+                throw new AliasAlreadyExistsException();
             }
 
             shortCode = request.customAlias();
@@ -125,7 +123,7 @@ public class UrlService {
         Url url = urlRepository
                 .findByShortCode(shortCode)
                 .orElseThrow(
-                        () -> new ShortUrlNotFoundException(shortCode)
+                        () -> new ShortUrlNotFoundException()
                 );
 
         redisTemplate.opsForValue()
@@ -146,7 +144,7 @@ public class UrlService {
             Url url = urlRepository
                     .findByShortCode(shortCode)
                     .orElseThrow(
-                            () -> new ShortUrlNotFoundException(shortCode)
+                            () -> new ShortUrlNotFoundException()
                     );
 
             return new UrlStatsResponse(
@@ -163,7 +161,7 @@ public class UrlService {
         urlRepository
                 .findByShortCode(shortCode)
                 .orElseThrow(
-                        () -> new ShortUrlNotFoundException(shortCode)
+                        () -> new ShortUrlNotFoundException()
                 );
 
         urlRepository.deleteByShortCode(shortCode);
